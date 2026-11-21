@@ -1,0 +1,22 @@
+{
+  "name": "Jonathan Escobar - Portafolio PWA UPDS",
+  "short_name": "JE Portafolio",
+  "description": "Portafolio interactivo Offline-First para Diseno Web 2 - UPDS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0d14",
+  "theme_color": "#00e5ff",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

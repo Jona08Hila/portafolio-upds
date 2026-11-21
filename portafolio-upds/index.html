@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0b0d14">
+  <title>Jonathan Escobar | Ingenieria de Sistemas UPDS</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <!-- Cabecera fija -->
+    <header class="app-header">
+      <div class="brand-group">
+        <div class="avatar-ring">
+          <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&w=120&q=80" alt="Jonathan Escobar" loading="lazy">
+        </div>
+        <div class="brand-text">
+          <h1>Jonathan Escobar</h1>
+          <span>Ingenieria de Sistemas - UPDS</span>
+        </div>
+      </div>
+
+      <div class="header-controls" id="header-controls">
+        <span class="status-badge" id="network-status" aria-live="polite">En Linea</span>
+        <button type="button" class="btn-control" id="btn-theme" data-hydrate="true">Tema</button>
+        <button type="button" class="btn-control btn-hydrate" id="btn-hydrate" data-hydrate="true">Hidratar</button>
+      </div>
+    </header>
+
+    <!-- Contenedor principal sin scroll -->
+    <main class="app-viewport" id="app-viewport">
+
+      <!-- VISTA 1: INICIO -->
+      <section class="view-panel active" id="view-inicio" data-view="inicio">
+        <div class="section-bar">
+          <div>
+            <h2>Inicio</h2>
+            <p class="subtitle">Desarrollo Web, Tecnologia y Deporte - UPDS</p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-inicio" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-inicio">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-meta">
+            <span class="tag-accent">UPDS - Diseno Web 2</span>
+            <span class="tag-muted">Bolivia</span>
+          </div>
+          <p class="hero-quote">Arquitectura frontend modular, rendimiento sin scroll y enfoque Offline-First.</p>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="cards-flex-grid" id="home-quick-cards">
+          <button type="button" class="nav-card" data-nav="mundo" data-hydrate="true">
+            <span class="card-code">01</span>
+            <strong>Juegos</strong>
+            <small>Budokai Tenkaichi 3, Clash Royale, Brawl Stars, DB Legends</small>
+          </button>
+          <button type="button" class="nav-card" data-nav="musica" data-hydrate="true">
+            <span class="card-code">02</span>
+            <strong>Musica</strong>
+            <small>Anime DB y Electronica con enlaces YouTube</small>
+          </button>
+          <button type="button" class="nav-card" data-nav="rutina" data-hydrate="true">
+            <span class="card-code">03</span>
+            <strong>Rutina</strong>
+            <small>Estudio UPDS, codigo y futbol</small>
+          </button>
+          <button type="button" class="nav-card" data-nav="contacto" data-hydrate="true">
+            <span class="card-code">04</span>
+            <strong>Redes y Contacto</strong>
+            <small>Rutas directas y mensaje validado</small>
+          </button>
+        </div>
+      </section>
+
+      <!-- VISTA 2: JUEGOS CON IMAGENES, FILTROS Y SELECCION MULTIPLE -->
+      <section class="view-panel" id="view-mundo" data-view="mundo">
+        <div class="section-bar">
+          <div>
+            <h2>Juegos</h2>
+            <p class="subtitle">Seleccion multiple: <strong id="selected-count">0</strong></p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-mundo" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-mundo">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-pills" id="game-filters" role="group" aria-label="Filtro de juegos">
+          <button type="button" class="pill active" data-filter="all" data-hydrate="true">Todos</button>
+          <button type="button" class="pill" data-filter="bt3" data-hydrate="true">Budokai Tenkaichi 3</button>
+          <button type="button" class="pill" data-filter="clash" data-hydrate="true">Clash Royale</button>
+          <button type="button" class="pill" data-filter="brawl" data-hydrate="true">Brawl Stars</button>
+          <button type="button" class="pill" data-filter="legends" data-hydrate="true">DB Legends</button>
+        </div>
+
+        <div class="cards-flex-grid selectable-group" id="games-list"></div>
+      </section>
+
+      <!-- VISTA 3: MUSICA CON YOUTUBE, FONDO REPRODUCIENDO Y TRAILER -->
+      <section class="view-panel" id="view-musica" data-view="musica">
+        <div class="section-bar">
+          <div>
+            <h2>Musica</h2>
+            <p class="subtitle">Anime Dragon Ball y Electronica</p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-musica" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-musica">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-pills" id="music-filters" role="group" aria-label="Filtro de musica">
+          <button type="button" class="pill active" data-filter="all" data-hydrate="true">Todas</button>
+          <button type="button" class="pill" data-filter="anime" data-hydrate="true">Anime</button>
+          <button type="button" class="pill" data-filter="electronica" data-hydrate="true">Electronica</button>
+        </div>
+
+        <div class="cards-flex-grid" id="tracks-list"></div>
+
+        <!-- Bloque activo con imagen de fondo "Reproduciendo..." y trailer/preview tematico -->
+        <div class="now-playing-stage" id="now-playing-stage">
+          <div class="playing-status-box">
+            <strong id="playing-state-label">Reproduciendo: Selecciona un tema</strong>
+            <a id="playing-youtube-link" href="https://www.youtube.com/results?search_query=Dragon+Ball+Super+Beerus+theme" target="_blank" rel="noopener noreferrer">Abrir en YouTube</a>
+          </div>
+          <video id="music-trailer-video" class="trailer-preview" controls muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=75">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+          </video>
+        </div>
+      </section>
+
+      <!-- VISTA 4: RUTINA SEMANAL -->
+      <section class="view-panel" id="view-rutina" data-view="rutina">
+        <div class="section-bar">
+          <div>
+            <h2>Rutina</h2>
+            <p class="subtitle">Organizacion academica UPDS, desarrollo y futbol</p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-rutina" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-rutina">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-pills" id="routine-filters" role="group" aria-label="Dias de rutina">
+          <button type="button" class="pill active" data-day="all" data-hydrate="true">Todos</button>
+          <button type="button" class="pill" data-day="lun" data-hydrate="true">Lun</button>
+          <button type="button" class="pill" data-day="mie" data-hydrate="true">Mie</button>
+          <button type="button" class="pill" data-day="vie" data-hydrate="true">Vie</button>
+        </div>
+
+        <div class="cards-flex-grid" id="routine-list"></div>
+      </section>
+
+      <!-- VISTA 5: GALERIA CARRUSEL -->
+      <section class="view-panel" id="view-galeria" data-view="galeria">
+        <div class="section-bar">
+          <div>
+            <h2>Galeria</h2>
+            <p class="subtitle">Futbol y Paisajes</p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-galeria" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-galeria">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-box" id="carousel-box">
+          <button type="button" class="carousel-btn prev" data-action="carousel-prev" data-hydrate="true" aria-label="Anterior">&lt;</button>
+          <figure class="carousel-stage">
+            <img id="carousel-img" src="" alt="" loading="lazy">
+            <figcaption id="carousel-caption"></figcaption>
+          </figure>
+          <button type="button" class="carousel-btn next" data-action="carousel-next" data-hydrate="true" aria-label="Siguiente">&gt;</button>
+        </div>
+
+        <div class="carousel-thumbs" id="carousel-thumbs"></div>
+      </section>
+
+      <!-- VISTA 6: REDES Y FORMULARIO -->
+      <section class="view-panel" id="view-contacto" data-view="contacto">
+        <div class="section-bar">
+          <div>
+            <h2>Redes y Contacto</h2>
+            <p class="subtitle">Validacion en tiempo real y proteccion XSS</p>
+          </div>
+          <div class="section-menu-wrapper">
+            <button type="button" class="btn-hamburger" data-action="toggle-section-menu" data-target="menu-contacto" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="section-dropdown" id="menu-contacto">
+              <button type="button" data-nav="inicio">Inicio</button>
+              <button type="button" data-nav="mundo">Juegos</button>
+              <button type="button" data-nav="rutina">Rutina</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rutas directas limpias sin texto innecesario -->
+        <div class="social-links-row" id="social-links">
+          <a href="https://github.com/jonathanescobar" target="_blank" rel="noopener noreferrer">https://github.com/jonathanescobar</a>
+          <a href="https://instagram.com/jonathanescobar" target="_blank" rel="noopener noreferrer">https://instagram.com/jonathanescobar</a>
+          <a href="https://youtube.com/@jonathanescobar" target="_blank" rel="noopener noreferrer">https://youtube.com/@jonathanescobar</a>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field-group">
+              <label for="input-name">Nombre Completo * <small>(Ej: Jonathan Escobar)</small></label>
+              <input type="text" id="input-name" name="name" placeholder="Solo letras y espacios" required autocomplete="off">
+              <span class="field-error" id="error-name"></span>
+            </div>
+
+            <div class="field-group">
+              <label for="input-email">Correo Electronico * <small>(Ej: estudiante@upds.edu.bo)</small></label>
+              <input type="email" id="input-email" name="email" placeholder="usuario@dominio.com" required autocomplete="off">
+              <span class="field-error" id="error-email"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field-group">
+              <label for="input-phone">Celular Bolivia * <small>(Ej: 71234567)</small></label>
+              <input type="tel" id="input-phone" name="phone" placeholder="8 digitos (inicia con 6 o 7)" maxlength="8" required autocomplete="off">
+              <span class="field-error" id="error-phone"></span>
+            </div>
+
+            <div class="field-group">
+              <label for="input-message">Mensaje * <small>(Min. 10 caracteres sin etiquetas HTML)</small></label>
+              <input type="text" id="input-message" name="message" placeholder="Consulta academica o proyecto" maxlength="120" required autocomplete="off">
+              <span class="field-error" id="error-message"></span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <span class="form-feedback" id="form-feedback" aria-live="polite"></span>
+            <button type="submit" class="btn-submit" id="btn-submit" data-hydrate="true">Enviar Mensaje</button>
+          </div>
+        </form>
+      </section>
+
+    </main>
+
+    <!-- Barra de navegacion inferior sin scroll -->
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Navegacion principal">
+      <button type="button" class="nav-tab active" data-nav="inicio" data-hydrate="true">Inicio</button>
+      <button type="button" class="nav-tab" data-nav="mundo" data-hydrate="true">Juegos</button>
+      <button type="button" class="nav-tab" data-nav="musica" data-hydrate="true">Musica</button>
+      <button type="button" class="nav-tab" data-nav="rutina" data-hydrate="true">Rutina</button>
+      <button type="button" class="nav-tab" data-nav="contacto" data-hydrate="true">Contacto</button>
+    </nav>
+  </div>
+
+  <!-- Notificacion externa discreta para instalar PWA -->
+  <aside class="pwa-toast" id="pwa-install-banner" role="dialog" aria-label="Instalar aplicacion" hidden>
+    <div class="pwa-toast-info">
+      <strong>Instalar Portafolio PWA</strong>
+      <span>Acceso directo y funcionamiento sin conexion</span>
+    </div>
+    <div class="pwa-toast-actions">
+      <button type="button" class="btn-control" id="btn-pwa-dismiss">Mas tarde</button>
+      <button type="button" class="btn-submit" id="btn-pwa-install">Instalar</button>
+    </div>
+  </aside>
+</body>
+</html>
